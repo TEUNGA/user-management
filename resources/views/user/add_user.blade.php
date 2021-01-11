@@ -16,36 +16,29 @@
         <div class ="offset-2 col-md-8 mt-5">
             <div class ="card">
                 <div class="card-header">
-                <span class="h4"> User 
-                <a class="btn btn-primary float-right" href="{{route('user.create')}}"> + </a></span>
+                <span class="h4"> Add User 
+               
                     <div class="card-body">
-                    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email Adress</th>
-      <th scope="col">Phone number</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-  @foreach($users as $user)
-    <tr>
-      <th scope="row">{{$user->id}}</th>
-      <td>{{$user->user_name}}</td>
-      <td>{{$user->email_adress}}</td>
-      <td>{{$user->phone_number}}</td>
-      <td>
-      <a href="{{route('user.edit', $user->id)}}"> Edit </a> 
-      <a href="{{route('user.destroy',$user->id)}}"> Delete </a>
-      </td>
-      @endforeach
-      
-    </tr>
-   
-  </tbody>
-</table>
+                    <form method="post" action="{{ route('user.store') }}">
+                    @csrf
+                    @method('post')
+                    
+  <div class="form-group">
+    <label for="user_name">Name</label>
+    <input type="text" name="user_name" class="form-control" id="user_name" aria-describedby="namehelp" placeholder="Enter name">
+  </div>
+  <div class="form-group">
+    <label for="email_adress">Email address</label>
+    <input type="email" name="email_adress" class="form-control" id="email_adress" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="phone_number">Phone Number</label>
+    <input type="number" name="phone_number" class="form-control" id="phone_number" placeholder="Phone Number">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+                    
                     </div>
                 </div>
             </div>
