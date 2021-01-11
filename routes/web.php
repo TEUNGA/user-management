@@ -23,4 +23,5 @@ Route::post('/user', 'App\Http\Controllers\UserController@store')->name('user.st
 Route::get('/user/{id}', 'App\Http\Controllers\UserController@destroy')->where('id', '[0-9]+')->name('user.destroy');
 Route::get('/user/{id}/edit', 'App\Http\Controllers\UserController@edit');
 Route::post('/user/{id}/edit', 'App\Http\Controllers\UserController@edit')->where('id', '[0-9]+')->name('user.edit');
+Route::post('/user/{id}/update', 'App\Http\Controllers\UserController@update')->where('id', '[0-9]+')->name('user.update');
 //Route::resource('/user', 'App\Http\Controllers\UserController');

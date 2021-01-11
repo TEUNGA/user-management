@@ -19,7 +19,7 @@
                 <span class="h4"> Update User 
                
                     <div class="card-body">
-                    <form method="post" action="{{ route('user.store') }}">
+                    <form method="post" action="{{ route('user.update', $user->id) }}">
                     @csrf
                     @method('post')
                     
