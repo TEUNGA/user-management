@@ -16,13 +16,25 @@
         <div class ="offset-2 col-md-8 mt-5">
             <div class ="card">
                 <div class="card-header">
-                <span class="h4"> User 
-                <a class="btn btn-primary float-right" href="{{route('user.create')}}"> + </a></span>
+                <span class="h4"> {{auth()->user()->role }} : {{auth()->user()->name }}
+                <a class="btn btn-primary float-right" href="/user/create"> + </a></span>
+                </div>
+                                   <div> <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                    </div>
+                <div >
                     <div class="card-body">
                     <table class="table">
   <thead>
     <tr>
-      <th scope="col">id</th>
+      <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Email Adress</th>
       <th scope="col">Phone number</th>
@@ -30,16 +42,26 @@
     </tr>
   </thead>
   <tbody>
+
+
+  @php
+    $count = 1;
+  @endphp
+
   @foreach($users as $user)
+     
     <tr>
-      <th scope="row">{{$user->id}}</th>
+      <th scope="row">{{$count}}</th>
       <td>{{$user->user_name}}</td>
       <td>{{$user->email_adress}}</td>
       <td>{{$user->phone_number}}</td>
       <td>
-      <a href="{{route('user.edit', $user->id)}}"> Edit </a> 
-      <a href="{{route('user.destroy',$user->id)}}"> Delete </a>
+      <a href="{{route('user.edit', $user->id)}}" class="btn btn-sm btn-info"> Edit </a> 
+      <a href="{{route('user.destroy',$user->id)}}" class="btn btn-sm btn-danger"> Delete </a>
       </td>
+      @php
+        $count += 1;
+      @endphp
       @endforeach
       
     </tr>

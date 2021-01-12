@@ -13,13 +13,11 @@ class UserController extends Controller
 {
     public function index()
     {   $users= UdemyUser::all();
-        //$users = UdemyUser::where('id', $user_id);
-
         return view('welcome', compact('users'));
     }
 
     public function create()
-    { Log::info('it works here');
+    {
         return view('user.add_user');
     }
 
@@ -30,7 +28,8 @@ class UserController extends Controller
         'email_adress' => 'required|string|max:255',
         'phone_number' => 'required|string|max:255',
         
-        ]);   
+        ]);  
+        
         
        
         UdemyUser::create([
@@ -42,10 +41,17 @@ class UserController extends Controller
        
         return redirect('/') ;
     }
+
+
+    
+
+
+
     public function show()
     {
         // 
     }
+
     public function edit(Request $request )
     {
         $user=UdemyUser::find($request['id']);
